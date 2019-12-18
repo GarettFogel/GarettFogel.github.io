@@ -28,19 +28,35 @@
           }
       });
     </script> 
+<!-- <script src="three.r92.min.js"></script>
+<script src="vanta.net.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/100/three.min.js"></script>
+<script src="https://www.vantajs.com/dist/vanta.net.min.js"></script>
+
   </head>
-  <body>
+  <body id="vantajs">
+    
     <div id="header"></div>
-    <div class="container">
+    <div  class="container">
       <div class="jumbotron">
         <h1 class="display-5">Hi there, my name is Garett Fogel</h1>     
         <p class="lead">I'm really into computers among other things. Welcome to my website.</p>
       </div> 
     </div>
-
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <div id="footer"></div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+        VANTA.NET({
+          el: "#vantajs",
+          color: 0x3fc8ff,
+          backgroundColor: 0x36215c,
+          points: 12.00,
+          maxDistance: 22.00,
+          spacing: 17.00
+        })
+        </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
