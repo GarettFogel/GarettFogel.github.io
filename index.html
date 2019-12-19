@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="css/stylesheet.css">
     <title>Home - Garett Fogel</title>
     <head>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -18,24 +18,24 @@
 <script src="https://www.vantajs.com/dist/vanta.net.min.js"></script>
 
   </head>
-  <body id="vantajs">
-    
+  <body> 
     <div id="header"></div>
-    <div  class="container bg-transparent">
-      <div class="row bg-white">
-        <div class = "col">
-        <h1 class="display-5 text-center">Hi there, my name is Garett Fogel</h1>   
-        </div>  
-      </div> 
-      <div class="row bg-white">
+    <div id ="vantajs">
+      <div  class="container bg-transparent fill">
+        <div class="row bg-white">
           <div class = "col">
-            <p class="lead text-center">I'm really into computers among other things. Welcome to my website. If you want to get in touch,
-              email me at <a href="mailto:garett.fogel@gmail.com">garett.fogel@gmail.com</a>.
-            </p>
+          <h1 class="display-5 text-center">Hi there, my name is Garett Fogel!</h1>   
+          </div>  
+        </div> 
+        <div class="row bg-white">
+            <div class = "col">
+              <p class="lead text-center">I'm really into computers among other things. Welcome to my website. If you want to get in touch,
+                email me at <a href="mailto:garett.fogel@gmail.com">garett.fogel@gmail.com</a>.
+              </p>
+          </div>
         </div>
       </div>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <div id="footer"></div>
     <!-- Optional JavaScript -->
     <script>
@@ -56,13 +56,13 @@
               $('#header').html(data);
           }
       });
-      // $.ajax({
-      //   url: 'footer.html',
-      //   success: function(data) {
-      //         //data=$(data).find('div#id');
-      //         $('#footer').html(data);
-      //     }
-      // });
+       $.ajax({
+         url: 'footer.html',
+         success: function(data) {
+               data=$(data).find('div#id');
+               $('#footer').html(data);
+           }
+       });
     </script> 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
