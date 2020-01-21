@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="../css/atom-one-dark-reasonable.css">
+    <link rel="stylesheet" href="../css/stylesheet.css">
     <title>Using Machine Learning to Make Decisions - Garett Fogel</title>
+    <script src="../js/highlight.pack.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- <script src="three.r92.min.js"></script>
 <script src="vanta.net.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/100/three.min.js"></script>
-    <script src="https://www.vantajs.com/dist/vanta.net.min.js"></script>
+
 
 </head>
 
@@ -26,14 +27,23 @@
         <div class="container bg-transparent ">
             <br>
             <div class="row">
-                <div class="col">
+                <div class="col d-none d-lg-block">
                     <h1 class="display-5 text-center">Using Machine Learning to Make Decisions: a Simple Text
                         Prediction Script</h1>
+                </div>
+                <div class="col d-lg-none">
+                    <h1 class="display-5 text-center">Using Machine Learning to Make Decisions</h1>
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col">
+                    <div class="d-none d-lg-block">
+                        <img src="BlogImages/NoUltron2.JPG" align ="left" width="22.5%"  hspace="20">
+                    </div>
+                    <div class="d-lg-none">
+                        <img src="BlogImages/NoUltron2.JPG" align ="left" width="50%"  hspace="20">
+                    </div>
                     <p>
                         When you hear the phrase machine learning, your first thought may be complex models with
                         thousands of lines of code or even robots
@@ -50,14 +60,6 @@
                         symptoms and lifestyle compared to the symptoms and lifestyles of others. These machine learning
                         applications allow people to make smart, evidence based decisions.
                     </p>
-                    <br>
-                </div>
-                <div class="col">
-                    PHOTO HERE
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
                     <p>
                         Still a little intimidated by machine learning? Don't worry. I'm now going to take you through a
                         very
@@ -65,6 +67,185 @@
                         word and predict the three most likely words
                         to follow based on a set of training data.
                     </p>
+                    <p>
+                    <div class="font-weight-bold">How Simple Text Prediction Works</div>
+                        A machine learning model can be simple or complex, taking in as many factors as you see fit. For example, 
+                        <a href = "https://pdfs.semanticscholar.org/dc0f/cfffa7fc9e2e84598fa318c78987b57de1ed.pdf" target = "blank">
+                        this clickbait detection model</a> tested for 7677 different features in each article in the set of training articles.
+                        This text predition model is much simpler. It simply counts the number of times each bigram in the training data occurs.
+                        A bigram is just a fancy word for two words together in order. For example, in the sentence "I am quite hungry", the
+                        bigrams would be "I am", "am quite", and "quite hungry". By counting the frequency of each bigram, we can start to build
+                        some tables for each word like the one below.
+                    </p>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">First Word</th>
+                            <th scope="col">Second Word</th>
+                            <th scope="col">Frequency</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>I</td>
+                            <td>can</td>
+                            <td>58</td>
+                          </tr>
+                          <tr>
+                            <td>I</td>
+                            <td>will</td>
+                            <td>77</td>
+                          </tr>
+                          <tr>
+                            <td>I</td>
+                            <td>run</td>
+                            <td>21</td>
+                          </tr>
+                          <tr>
+                            <td>I</td>
+                            <td>am</td>
+                            <td>104</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <p>
+                          After going through all of the training data and creating tables like the one above for every word in the set,
+                          the user will be asked to input a word. The script will then find the top 3 most frequent words that followed
+                          the inputted word. To continue with the example above, if the user inputted the word "I", they would be returned
+                          the words "am", "will", "can". The words returned will differ based on the training data that provide to the model.
+                          By training the model with one persons writing, the model can predict the most likely words that that person would
+                          write next.
+                      </p>
+                      <p>
+                          Obviously, this is a very simple model. It only takes into consideration the previous word when predicting the next word.
+                          In order to make this a bit more accurate you could take into account a variety of other factors including current gramatical
+                          tense, punctuation, and larger grams (such as trigrams).
+                          For those interested, I'll show and discuss my code for simple text prediction. A basic understanding of python will be
+                          helpful for understanding the following. If you'd like to download the entire script, you can get it 
+                          <a href = "https://github.com/GarettFogel/SimpleTextPrediction" target = "blank">here.</a>
+                      </p>
+                      <p>
+                      <div class="font-weight-bold">1. The Setup: </div>
+                      <pre><code class="language-python vs">
+import sys
+import glob
+import errno
+import os
+import string
+from collections import Counter 
+
+fName = input("Name of directory containing training data?: ")
+path = os.path.join(fName,'*.txt')  
+files = glob.glob(path)
+previousWord = ""
+firstWords = dict()
+                      </code></pre>
+                      
+                          In the beginning of the code we import all of the libraries and create all of the variables that we will need later.
+                          In order to use this script, you will need a directory of .txt files to use as your training data. Files is the set
+                          of all files within that directory. The previousWord varaible is set to blank
+                          since the previous word to the first word is nothing. The firstWords variable is a dictionary where the key is the 
+                          first word of a bigram, and the value is a list of dictionaries. They key for each dictionary in said list will
+                          be each second word of the bigram, and the value will be the number of occurences of that bigram.
+                          Using the above example, the data would look like this:
+                      </p>
+                      <pre><code class="language-python">
+{
+    "i": {
+        "can": 58,
+        "will": 77,
+        "run": 21,
+        "am": 104
+    }
+}
+                    </code></pre>
+                    <p>
+                      <div class="font-weight-bold">2. Training the Model: </div>
+                      Heres where we get into the heart of machine learning: parsing through the training data and teaching the model
+                      how to make predictions.
+                      <pre><code class="language-python">
+print("Processing training data...")
+for name in files:
+    try:
+        with open(name) as f:
+            for line in f:
+                for word in line.split():
+                    word = word.lower() #case does not matter to me
+                    word = word.translate(str.maketrans('', '', string.punctuation)) #This line removes all punctuation
+                    if previousWord in firstWords: #previous word has been seen
+                        if word in firstWords[previousWord]: #previous word has been seen with the current word after it.
+                            firstWords[previousWord][word] += 1
+                        else: #previous word has been seen, but not with this word following it yet
+                            firstWords[previousWord][word] = 1
+                    else: #previous word has not yet been seen
+                        firstWords[previousWord] = dict()
+                        firstWords[previousWord][word] = 1
+                    previousWord = word
+            previousWord = "" #reset previous word after parsing entire file
+    except IOError as exc:
+        if exc.errno != errno.EISDIR: # Do not fail if a directory is found, just ignore it.
+            raise # Propagate other kinds of IOError.
+print("Training complete.")
+</code></pre>
+In this section, we parse through each word of each line in each file. We "clean" the data by changing it all to lower case and removing all
+punctuation. All we care about is the order of the words. In each iteration of the loop, the "previousWord" variable is the first word of the
+the bigram, and the "word" variable is the second word of the bigram. If "previousWord" has been seen as the first word of a bigram, we
+check to see if the full bigram has 
+been seen. If it has, we increase the value by 1. If not, we add "word" to the list of bigrams starting with "previousWord", and set its vaule
+to 1. If "previousWord" has NOT been seen as the first word of a bigram, we add it to the "firstWords" dictionary and add "word" to the list
+of bigrams beginning with "previousWord", and set its value to 1.
+</p>
+<p>
+<div class="font-weight-bold">3. Making Predictions: </div>
+<pre><code class="language-python vs">
+flag = True
+while flag:
+    checkWord = input("Enter a word to predict the next word: ").lower()
+    if checkWord in firstWords:
+        k = Counter(firstWords[checkWord])
+        # Finding 3 highest values 
+        top3predictions = k.most_common(3)
+        print("Top 3 most likely words to appear next: ")
+        for i in top3predictions:
+            print(i[0]),
+    else:
+        print("This word did not appear in the training data")
+    leave = False
+    while not leave:
+        choice = input("Would you like to enter another word? (y/n): ").lower().strip()
+        if choice == 'y':
+            leave = True
+        elif choice == 'n':
+            flag = False
+            leave = True
+        else:
+            print("Invalid choice, please select y or n.")
+print("Goodbye!")
+                      </code></pre>
+                      From here the rest is pretty easy. We ask the user for a word. If that word has occured as the beginning of a bigram
+                      we find the 3 second words with the highest number of occurences, and print them out to the user. Otherwise, we inform
+                      the user that that word did not occur in the training data. The remainder of the code is standard trivial menu stuff to
+                      repeat the prediction process.
+                    </p>
+                    <p>
+                        As I stated before, this is an extremely simple text prediction model to help you get your feet wet with the world of
+                        machine learning. To see how predictions change based on the training data, try training the model with books by different authors,
+                        and see how predictions change based on whos writing has been used. The more training data you have, the better results you will get.
+                        Feel free to add to my code to include other things such as trigrams, punctuation, or anything else you can think of to make more
+                        accurate. Perhaps you could take in an entire phrase of input instead of just one word. If you do, let me know!
+                    </p>
+                    <p>
+                        Using this same process you could create models for all sorts of applications. For example if you own a car repair shop,
+                        you could create a model that assocaites weather patterns with the types of repairs that occur during said weather.  
+                        Based on recent weather, the model could predict what types of repairs are likely. As the shop owner, this information
+                        would be helpful for making decisions in marketing and parts ordering.
+                     </p>
+                    <p>
+                        Hopefully by now you are feeling more comfortable with machine learning, and know that it's not as scary as it sounds. If you
+                        have any questions about my text prediction script or machine learning/data science as a whole, feel free to shoot me an email at
+                        <a href="mailto:garett.fogel@gmail.com">garett.fogel@gmail.com</a>!
+                    </p>
+                    <br>
                 </div>
             </div>
         </div>
@@ -75,20 +256,21 @@
     <!-- Optional JavaScript -->
     <script>
         $.ajax({
-            url: 'header.html',
+            url: '../header.html',
             success: function (data) {
                 //data=$(data).find('div#id');
                 $('#header').html(data);
             }
         });
         $.ajax({
-            url: 'footer.html',
+            url: 'http://garettfogel.com/footer.html',
             success: function (data) {
                 //data=$(data).find('div#id');
                 $('#footer').html(data);
             }
         });
     </script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
