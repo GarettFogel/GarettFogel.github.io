@@ -61,7 +61,7 @@
                         applications allow people to make smart, evidence based decisions.
                     </p>
                     <p>
-                        Still a little intimidated by machine learning? Don't worry. I'm now going to take you through a
+                        Still a little intimidated by machine learning? Don't worry. I'm going to take you through a
                         very
                         simple text prediction machine learning script that I wrote. This script will take an inputted
                         word and predict the three most likely words
@@ -142,10 +142,11 @@ firstWords = dict()
                       </code></pre>
                       
                           In the beginning of the code we import all of the libraries and create all of the variables that we will need later.
-                          In order to use this script, you will need a directory of .txt files to use as your training data. Files is the set
+                          In order to use this script, you will need a directory of .txt files to use as your training data. The script will
+                          first ask you for the name of that directory. Files is the set
                           of all files within that directory. The previousWord varaible is set to blank
                           since the previous word to the first word is nothing. The firstWords variable is a dictionary where the key is the 
-                          first word of a bigram, and the value is a list of dictionaries. They key for each dictionary in said list will
+                          first word of a bigram, and the value is a list of dictionaries. The key for each dictionary in said list will
                           be each second word of the bigram, and the value will be the number of occurences of that bigram.
                           Using the above example, the data would look like this:
                       </p>
