@@ -161,8 +161,6 @@ firstWords = dict()
                     </code></pre>
                     <p>
                       <div class="font-weight-bold">2. Training the Model: </div>
-                      Heres where we get into the heart of machine learning: parsing through the training data and teaching the model
-                      how to make predictions.
                       <pre><code class="language-python">
 print("Processing training data...")
 for name in files:
@@ -187,7 +185,8 @@ for name in files:
             raise # Propagate other kinds of IOError.
 print("Training complete.")
 </code></pre>
-In this section, we parse through each word of each line in each file. We "clean" the data by changing it all to lower case and removing all
+Heres where we get into the heart of machine learning: parsing through the training data and teaching the model
+how to make predictions. In this section, we parse through each word of each line in each file. We "clean" the data by changing it all to lower case and removing all
 punctuation. All we care about is the order of the words. In each iteration of the loop, the "previousWord" variable is the first word of the
 the bigram, and the "word" variable is the second word of the bigram. If "previousWord" has been seen as the first word of a bigram, we
 check to see if the full bigram has 
