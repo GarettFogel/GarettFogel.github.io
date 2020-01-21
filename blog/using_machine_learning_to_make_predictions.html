@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <title>Using Machine Learning to Make Decisions - Garett Fogel</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="three.r92.min.js"></script>
+<script src="vanta.net.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/100/three.min.js"></script>
+    <script src="https://www.vantajs.com/dist/vanta.net.min.js"></script>
+
+</head>
+
+<body>
+    <div id="header"></div>
+    <div class="fill">
+        <div class="container bg-transparent ">
+            <br>
+            <div class="row">
+                <div class="col">
+                    <h1 class="display-5 text-center">Using Machine Learning to Make Decisions: a Simple Text
+                        Prediction Script</h1>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        When you hear the phrase machine learning, your first thought may be complex models with
+                        thousands of lines of code or even robots
+                        learning how to outsmart humans to take over the world. I'm here to tell you, machine learning
+                        isn't neccesarily that complex or scary.
+                        At its most basic level, machine learning is the idea that computers can make decisions based on
+                        given data rather than being explicitly
+                        programmed to make said decisions. Machine learning has applications in nearly every field and
+                        is constantly expanding and improving.
+                        It can be used by an investor to predict whether the price of a stock is going to go up or down
+                        based on previous trends and the historical effects of
+                        various outside influences. It can be used by a doctor to predict the likelyhood that a patient
+                        has or will develop a disease based on their
+                        symptoms and lifestyle compared to the symptoms and lifestyles of others. These machine learning
+                        applications allow people to make smart, evidence based decisions.
+                    </p>
+                    <br>
+                </div>
+                <div class="col">
+                    PHOTO HERE
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Still a little intimidated by machine learning? Don't worry. I'm now going to take you through a
+                        very
+                        simple text prediction machine learning script that I wrote. This script will take an inputted
+                        word and predict the three most likely words
+                        to follow based on a set of training data.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="footer"></div>
+    </div>
+    <!-- Optional JavaScript -->
+    <script>
+        $.ajax({
+            url: 'header.html',
+            success: function (data) {
+                //data=$(data).find('div#id');
+                $('#header').html(data);
+            }
+        });
+        $.ajax({
+            url: 'footer.html',
+            success: function (data) {
+                //data=$(data).find('div#id');
+                $('#footer').html(data);
+            }
+        });
+    </script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
